@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
+// use Faker\Factory as Faker;
+use App\Models\User;
 
 class UsersSeeder extends Seeder
 {
@@ -13,16 +14,10 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        //in i untuk mengi
-        $faker = Faker::create('id_ID');
-
-        for ($i = 0; $i < 10; $i++) {
-            \DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail(),
-                // 'password' => Hash::make('password'),
-                'created_at' => now(),
-                'updated_at' => now(),
+        for ($i = 0; $i < 1000; $i++) {
+            $user = User::factory()->create([
+                'name' => 'User ' . $i,
+                'email' => 'user' . $i . '@example.com',
             ]);
         }
     }
